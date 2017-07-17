@@ -12,6 +12,7 @@ RUN apt-get update && apt-get -y -q install \
 
 RUN mv /usr/sbin/tcpdump /usr/bin/tcpdump
 
+COPY ./supervisord.conf /etc/supervisord.conf
 COPY . /app/
 WORKDIR /app
 
