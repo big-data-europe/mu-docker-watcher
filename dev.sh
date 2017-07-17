@@ -6,6 +6,6 @@ docker run --rm -it \
            -v "$PWD"/pcap:/app/pcap \
 	         -v "$PWD"/supervisord.conf:/etc/supervisord.conf \
            --network host \
-           --name mu-docker-watcher \
+           --name mu-docker-watcher-service \
            -e MODE=development \
-           mu-docker-watcher
+           mu-docker-watcher-service
