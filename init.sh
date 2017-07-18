@@ -110,7 +110,7 @@ if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
         interface_id=$(cat $container_data_dir$container_data_file | jq -r ".[${i}] .data .interface_id")
 
         # Find the host interface that connects to the network the docker is running in.
-        for host_iface in `netstat -i | grep br | awk '{ print $1 }'`; do
+        for host_iface in `ip link show | grep br- | awk '{ print substr($2, 1, length($2)-1) }'`; do
 
           if [[ "$interface_id" == *$(echo $host_iface | awk -F'-' '{ print $2 }')* ]]; then
             analyzeTraffic $cname $host_iface $ip_address $network_name $pcap_write_dir
